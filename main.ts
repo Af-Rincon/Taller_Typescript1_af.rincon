@@ -1,5 +1,7 @@
 import { Course } from './course.js';
 
+import { Student } from './student.js';
+
 import { dataCourses } from './dataCourses.js';
 
 let coursesTbody: HTMLElement = document.getElementById('courses')!;
@@ -25,6 +27,20 @@ function renderCoursesInTable(courses: Course[]): void {
     coursesTbody.appendChild(trElement);
   });
 }
+
+function renderStudentInTable(students : Student[]):void{
+    console.log('Desplegando información del estudiante');
+    students.forEach((student) => {
+      let trElement = document.createElement("tr");
+      trElement.innerHTML = `<td>${student.cedula}</td>
+                             <td>${student.codigo}</td>
+                             <td>${student.direccion}</td>
+                             <td>${student.edad}</td>
+                             <td>${student.telefono}</td>`;
+      coursesTbody.appendChild(trElement);
+    });
+
+}
  
 
  
@@ -47,6 +63,19 @@ function getTotalCredits(courses: Course[]): number {
   let totalCredits: number = 0;
   courses.forEach((course) => totalCredits = totalCredits + course.credits);
   return totalCredits;
+}
+
+function filterByCredits( min: number, max: number, courses: Course[])
+{
+    var range: Course[] = [];
+    courses.forEach((course)=> 
+    {
+        if(course.credits>= min && course.credits<=max )
+        {range.push(course);} 
+    }
+    );
+
+        return range;
 }
 
 function clearCoursesInTable() {
