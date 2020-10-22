@@ -65,7 +65,7 @@ function getTotalCredits(courses: Course[]): number {
   return totalCredits;
 }
 
-function filterByCredits( min: number, max: number, courses: Course[])
+function filterByCredits( min: number, max: number, courses: Course[]) : Course[]
 {
     var range: Course[] = [];
     courses.forEach((course)=> 
